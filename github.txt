@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+struct BankMgmt{
+    char AccNumber[10];
+    char CustName[50];
+    float AvlBalance;
+    char AccType[10];
+};
+
+int main() {
+    
+    //Taking Input
+    struct BankMgmt member;
+    printf("Enter account number: ");
+    scanf("%s", member.AccNumber);
+    printf("Enter customer name: ");
+    scanf("%s", member.CustName);
+    printf("Enter available balance: ");
+    scanf("%f", &member.AvlBalance);
+    printf("Enter account type: ");
+    scanf("%s", member.AccType);
+    
+    //Creating Menu
+    int choice, flag = 0;
+    float amtWithdrawn, amtDeposit;
+    
+    while (flag == 0){
+        printf("Press 1 to Withdraw\nPress 2 to Deposit\nPress 3 to Display Balance\nPress 4 to Exit\n");
+        scanf("%d", &choice);
+        
+        switch (choice)
+        {
+            case 1:
+            printf("Enter amount to be withdrawn: ");
+            scanf("%f", &amtWithdrawn);
+            if (amtWithdrawn > member.AvlBalance){
+                printf("Amount specified for withdrawal exceeds avalaible balance.\n - Exiting back to menu - ");
+            }
+            member.AvlBalance -= amtWithdrawn;
+            printf("Current available balance: %.2f", member.AvlBalance);
+            break;
+            
+            case 2:
+            printf("Enter amount to be deposited: ");
+            scanf("%f", &amtDeposit);
+            member.AvlBalance += amtDeposit;
+            printf("Current available balance: %.2f", member.AvlBalance);
+            break;
+            
+            case 3:
+            printf("Current available balance: %.2f\n", member.AvlBalance);
+            printf("\t Aahlaad , Devansh ,  Advait , Tushar , Pratham.");           
+            break;
+            
+            case 4:
+            printf(" - Exited Application - ");
+            flag = 1;
+            break;
+            
+            default:
+            printf("Please enter a valid option");
+            
+        }
+    }
+    
+    return 0;
+}
